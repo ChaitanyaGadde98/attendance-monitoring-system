@@ -10,7 +10,7 @@ COPY src ${APP_ROOT}
 COPY requirements.txt server.py ${APP_ROOT}/
 
 RUN apt-get install -y cmake
-
+RUN pip3 install setuptools --upgrade
 RUN apt-get update
 WORKDIR /opt/attendance-monitoring-system
 
