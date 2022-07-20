@@ -1,0 +1,21 @@
+FROM alpine:3.16
+
+ENV APP_ROOT /opt/attendance-monitoring-system
+ENV PATH $APP_ROOT/python_env/bin:$PATH
+
+COPY src ${APP_ROOT}
+COPY requirements.txt server.py ${APP_ROOT}/
+
+RUN apt-get install cmake
+
+RUN apt-get update
+
+RUN apt-get install python3-pip
+
+RUN pip3 install setuptools --upgrade
+RUN pip3 install wheel
+RUN pip3 install -r requirements.txt
+
+WORKDIR /opt/attendance-monitoring-system
+
+CMD ["python3", "server.py"]
