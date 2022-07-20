@@ -8,3 +8,5 @@ cmake
 opencv-python
 dlib
 face-recognition
+opencv-python-headless
+libgl1
