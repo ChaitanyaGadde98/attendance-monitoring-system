@@ -37,22 +37,25 @@ def register_student():
 
 
 @app.route('/record_attendance', methods=["GET", "POST"])
-def record_attendance():
+def record_attendance_bulk():
     if request.method == "POST":
-        class_image = request.files["class_image"]
+        # class_image = request.files["class_image"]
         # flask.request.files.getlist(
-        image_path = "data/classroom_images/temp.JPG"
-        with open(image_path, 'wb') as img_file:
-            shutil.copyfileobj(class_image, img_file)
-            img_file.close()
-        date_time = get_timestamp_image(image_path)
-        timestamp = convert_datetime_timestamp(date_time)
-        timestamp_name = "data/classroom_images/{}.JPG".format(timestamp)
-        os.rename("data/classroom_images/temp.JPG", timestamp_name)
+        # temp = dict(frozenset(request.form.items()))["class_image[]"]
+        class_image = request.files.getlist("class_image")
+        for img in class_image:
+            image_path = "data/classroom_images/temp.JPG"
+            with open(image_path, 'wb') as img_file:
+                shutil.copyfileobj(img, img_file)
+                img_file.close()
+            date_time = get_timestamp_image(image_path)
+            timestamp = convert_datetime_timestamp(date_time)
+            timestamp_name = "data/classroom_images/{}.JPG".format(timestamp)
+            os.rename("data/classroom_images/temp.JPG", timestamp_name)
 
-        classroom_image = cv2.imread(timestamp_name)
-        faces_encs, faces_locs = extract_faces_and_encode(classroom_image)
-        msg = get_attendance_stats(class_image, timestamp, faces_encs, faces_locs)
+            classroom_image = cv2.imread(timestamp_name)
+            faces_encs, faces_locs = extract_faces_and_encode(classroom_image)
+            msg = get_attendance_stats(class_image, timestamp, faces_encs, faces_locs)
 
         return make_response(jsonify(msg), 200)
 

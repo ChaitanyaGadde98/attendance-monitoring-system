@@ -139,8 +139,8 @@
             <div class="box">
               <!-- fileuploader view component -->
               <div id="attendance_status"></div>
-                <div class="margin-bottom-20">
-                  <img class="thumbnail box-center margin-top-20" alt="No image" height="300" width="700" src="http://www.washaweb.com/tutoriaux/fileupload/imgs/image-temp-220.png" id="class_room_preview">
+                <div class="margin-bottom-20" id="class_room_preview">
+
                 </div>
 <!--                <p class="text-center">-->
 <!--                  <button type="submit" class="btn btn-sm" name="delete"><i class="icon-remove"></i> Remove</button>-->
@@ -168,12 +168,14 @@
     </article>
     <script>
       function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            $('#class_room_preview').attr('src', e.target.result);
+        if (input.files) {
+          for (var i = 0; i < input.files.length; ++i) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#class_room_preview').append(`<img src='${e.target.result}' style="width:30%;height:30%;padding:5%"/>`)
+             }
+             reader.readAsDataURL(input.files[i]);
           }
-          reader.readAsDataURL(input.files[0]);
         } else {
           alert('select a file to see preview');
           $('#class_room_preview').attr('src', '');
@@ -185,20 +187,18 @@
       });
 
 
-        $(function() {
-        $('input[type=file]').change(function(){
-          var t = $(this).val();
-          var labelText = 'File : ' + t.substr(12, t.length);
-          $(this).prev('label').text(labelText);
-        })
-      });
-
       $("#record_attendance").click(function(){
           var data = new FormData();
           var request = new XMLHttpRequest();
           request.responseType = "json";
-          var class_image = $("#class_image")[0].files[0];
-          data.append("class_image", class_image);
+
+          var class_image = [];
+
+          console.log($("#class_image")[0].files.length)
+
+          for (var i = 0; i < $("#class_image")[0].files.length; ++i) {
+              data.append("class_image",$("#class_image")[0].files[i]);
+          }
           request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
               $("#attendance_status").html(`<div class="alert alert-success">
