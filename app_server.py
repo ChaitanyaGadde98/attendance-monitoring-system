@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify, make_response, send_file
-from src.configurations import PORT
-from src.utils import register_new_student, get_timestamp_image, convert_datetime_timestamp, extract_faces_and_encode, get_attendance_stats, download_excel_file
+from configurations import PORT
+from utils import register_new_student, get_timestamp_image, convert_datetime_timestamp, extract_faces_and_encode, get_attendance_stats, download_excel_file
 import shutil
 import os
 import cv2
