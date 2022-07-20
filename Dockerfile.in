@@ -12,9 +12,8 @@ COPY requirements.txt server.py ${APP_ROOT}/
 RUN apt-get install -y cmake
 
 RUN apt-get update
+WORKDIR /opt/attendance-monitoring-system
 
 RUN pip3 install -r requirements.txt
-
-WORKDIR /opt/attendance-monitoring-system
 
 CMD ["python3", "server.py"]
