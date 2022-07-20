@@ -1,4 +1,7 @@
-FROM alpine:3.16
+FROM ubuntu:14.04
+
+# Install dependencies
+RUN apt-get update && apt-get install -y python3-pip
 
 ENV APP_ROOT /opt/attendance-monitoring-system
 ENV PATH $APP_ROOT/python_env/bin:$PATH
@@ -6,11 +9,10 @@ ENV PATH $APP_ROOT/python_env/bin:$PATH
 COPY src ${APP_ROOT}
 COPY requirements.txt server.py ${APP_ROOT}/
 
-RUN apt install cmake
+RUN apt-get install cmake
 
-RUN apt update
+RUN apt-get update
 
-RUN apt install python3-pip
 
 RUN pip3 install setuptools --upgrade
 RUN pip3 install wheel
