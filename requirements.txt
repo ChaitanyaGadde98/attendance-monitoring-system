@@ -1,6 +1,6 @@
 opencv-python
 imutils
 scipy
-flask==2.0.3
+flask
 pandas
 openpyxl
