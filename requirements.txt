@@ -1,10 +1,6 @@
 gunicorn
-cmake
-opencv-python
-dlib
-face-recognition
+flask==2.0.3
 imutils
 scipy
-flask==2.0.3
 pandas
 openpyxl
