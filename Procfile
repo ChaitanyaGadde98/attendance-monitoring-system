@@ -1,1 +1,1 @@
-web gunicorn app_ser:myapp --preload -b 0.0.0.0:6000 --workers 4
+web gunicorn ser:app --preload -b 0.0.0.0:6000 --workers 4
