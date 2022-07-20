@@ -1,6 +1,4 @@
 opencv-python
-dlib
-face-recognition
 imutils
 scipy
 flask==2.0.3

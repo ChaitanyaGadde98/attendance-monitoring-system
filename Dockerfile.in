@@ -1,11 +1,20 @@
 FROM aaftio/face_recognition
 
+# Install dependencies
+RUN apt-get update && apt-get install -y python3-pip
+RUN pip3 install --upgrade pip
+
 ENV APP_ROOT /opt/attendance-monitoring-system
 ENV PATH $APP_ROOT/python_env/bin:$PATH
 
 COPY src ${APP_ROOT}
 COPY requirements.txt server.py ${APP_ROOT}/
 
+RUN apt-get install -y cmake
+RUN pip3 install setuptools --upgrade
+RUN apt-get update
 WORKDIR /opt/attendance-monitoring-system
+
+RUN pip3 install -r requirements.txt
 
 CMD ["python3", "server.py"]
