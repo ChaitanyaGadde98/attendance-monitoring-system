@@ -6,11 +6,11 @@ ENV PATH $APP_ROOT/python_env/bin:$PATH
 COPY src ${APP_ROOT}
 COPY requirements.txt server.py ${APP_ROOT}/
 
-RUN apt-get install cmake
+RUN apt install cmake
 
-RUN apt-get update
+RUN apt update
 
-RUN apt-get install python3-pip
+RUN apt install python3-pip
 
 RUN pip3 install setuptools --upgrade
 RUN pip3 install wheel
