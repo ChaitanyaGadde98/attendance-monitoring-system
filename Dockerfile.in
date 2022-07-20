@@ -18,6 +18,5 @@ RUN pip3 install flask
 RUN pip3 install imutils
 RUN pip3 install scipy
 RUN pip3 install openpyxl
-RUN pip3 install pandas
 
 CMD ["python3", "server.py"]
