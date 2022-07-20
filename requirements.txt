@@ -7,3 +7,4 @@ scipy
 flask==2.0.3
 pandas
 openpyxl
+gunicorn

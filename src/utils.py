@@ -6,7 +6,7 @@ import pandas as pd
 from PIL import Image
 import time
 import datetime
-from configurations import REGISTRATIONS_PICKLE_PATH, PICKLE_FILENAME, DIST_THRESHOLD, DRAW_BOX, ATTENDANCE_REPORT_PATH, ATTENDANCE_EXCEL_PATH
+from src.configurations import REGISTRATIONS_PICKLE_PATH, PICKLE_FILENAME, DIST_THRESHOLD, DRAW_BOX, ATTENDANCE_REPORT_PATH, ATTENDANCE_EXCEL_PATH
 
 
 def get_timestamp_image(path):
