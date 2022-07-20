@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Attendance Monitoring System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      /*basic settings */
+      a:focus {
+      outline: none !important;
+      outline-offset: none !important;
+      }
+      body {
+      background: #f5f6f5;
+      color: #333;
+      }
+      /* helper classses */
+      .margin-top-20 {
+      margin-top: 20px;
+      }
+      .margin-bottom-20 {
+      margin-top: 20px;
+      }
+      .no-margin {
+      margin: 0px;
+      }
+      /* box component */
+      .box {
+      border-color: #e6e6e6;
+      background: #FFF;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+      padding: 10px;
+      margin-bottom: 40px;
+      }
+      .box-center {
+      margin: 20px auto;
+      }
+      /* input [type = file]
+      ----------------------------------------------- */
+      input[type=file] {
+      display: block !important;
+      right: 1px;
+      top: 1px;
+      height: 34px;
+      opacity: 0;
+      width: 100%;
+      background: none;
+      position: absolute;
+      overflow: hidden;
+      z-index: 2;
+      }
+      .control-fileupload {
+      display: block;
+      border: 1px solid #d6d7d6;
+      background: #FFF;
+      border-radius: 4px;
+      width: 100%;
+      height: 36px;
+      line-height: 36px;
+      padding: 0px 10px 2px 10px;
+      overflow: hidden;
+      position: relative;
+      &:before, input, label {
+      cursor: pointer !important;
+      }
+      /* File upload button */
+      &:before {
+      /* inherit from boostrap btn styles */
+      padding: 4px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      line-height: 20px;
+      color: #333333;
+      text-align: center;
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #f5f5f5;
+      background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+      background-repeat: repeat-x;
+      border: 1px solid #cccccc;
+      border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+      border-bottom-color: #b3b3b3;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+      transition: color 0.2s ease;
+      /* add more custom styles*/
+      content: 'Browse';
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: 2px;
+      right: 2px;
+      line-height: 20px;
+      text-align: center;
+      }
+      &:hover, &:focus {
+      &:before {
+      color: #333333;
+      background-color: #e6e6e6;
+      color: #333333;
+      text-decoration: none;
+      background-position: 0 -15px;
+      transition: background-position 0.2s ease-out;
+      }
+      }
+      label {
+      line-height: 24px;
+      color: #999999;
+      font-size: 14px;
+      font-weight: normal;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      position: relative;
+      z-index: 1;
+      margin-right: 90px;
+      margin-bottom: 0px;
+      cursor: text;
+      }
+
+    </style>
+  </head>
+  <body>
+  <div class="jumbotron text-center">
+  <h1>Attendance Monitoring System</h1>
+  <p>By Chaitanyavishnu Srinivas Gadde</p>
+</div>
+    <article id="main-content" role="main">
+      <section class="container">
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8">
+            <h3 class="text-info text-center">Record Attendance</h3>
+            <!--image file upoad sample-->
+            <div class="box">
+              <!-- fileuploader view component -->
+              <div id="attendance_status"></div>
+                <div class="margin-bottom-20">
+                  <img class="thumbnail box-center margin-top-20" alt="No image" height="300" width="700" src="http://www.washaweb.com/tutoriaux/fileupload/imgs/image-temp-220.png" id="class_room_preview">
+                </div>
+<!--                <p class="text-center">-->
+<!--                  <button type="submit" class="btn btn-sm" name="delete"><i class="icon-remove"></i> Remove</button>-->
+<!--                  <button type="submit" class="btn btn-primary btn-sm" id="save" name="save"><i class="icon-ok icon-white"></i> Save</button>-->
+<!--                </p>-->
+                <!-- ./fileuploader view component -->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <span class="control-fileupload">
+                    <label for="class_image" class="text-left">Please choose a file on your computer.</label>
+                    <input type="file" id="class_image" multiple>
+                    </span>
+                  </div>
+
+                </div>
+                <br>
+                <div class="text-center">
+                  <a href = "/"><button class="btn btn-primary">Home</button></a>
+                  <button id="record_attendance" class="btn btn-primary">Submit</button></div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+    <script>
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $('#class_room_preview').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        } else {
+          alert('select a file to see preview');
+          $('#class_room_preview').attr('src', '');
+        }
+      }
+
+      $("#class_image").change(function() {
+        readURL(this);
+      });
+
+
+        $(function() {
+        $('input[type=file]').change(function(){
+          var t = $(this).val();
+          var labelText = 'File : ' + t.substr(12, t.length);
+          $(this).prev('label').text(labelText);
+        })
+      });
+
+      $("#record_attendance").click(function(){
+          var data = new FormData();
+          var request = new XMLHttpRequest();
+          request.responseType = "json";
+          var class_image = $("#class_image")[0].files[0];
+          data.append("class_image", class_image);
+          request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+              $("#attendance_status").html(`<div class="alert alert-success">
+            <strong>SUCCESS</strong> Recoreded Attendance.`)
+            }
+            else { $("#attendance_status").html(`<div class="alert alert-info">
+            <strong>PROCESSING</strong> Please Wait!`)}
+          };
+          request.open("POST", "/record_attendance")
+          request.send(data);
+      });
+
+
+    </script>
+  </body>
+</html>

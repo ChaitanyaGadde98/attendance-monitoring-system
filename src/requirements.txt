@@ -1,0 +1,7 @@
+opencv-python
+cmake
+face-recognition
+imutils
+scipy
+flask==2.0.3
+pandas

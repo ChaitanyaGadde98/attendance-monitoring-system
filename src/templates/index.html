@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Attendance Monitoring System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+  </style>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1>Attendance Monitoring System</h1>
+  <p>By Chaitanyavishnu Srinivas Gadde</p>
+</div>
+<br>
+<br>
+<br>
+
+  <div class="row">
+    <a href="/register_student">
+    <div class="col-md-offset-2 col-sm-2">
+      <h3>Register Student</h3>
+      <p>Register a student on the portal by providing Campus ID, Name and a front facing photo.</p>
+    </div>
+</a>
+
+  <a href="/record_attendance">
+<div class="card-body">
+    <div class="col-md-offset-1 col-sm-2">
+      <h3>Record Attendance</h3>
+      <p>Record attendance by uploading a classroom photo with students facing towards camera.</p>
+    </div>
+</div>
+
+  </a>
+
+    <a href="/download_attendance_record">
+<div class="card-body">
+    <div class="col-md-offset-1 col-sm-2">
+      <h3>Download Attendance Record Sheet</h3>
+      <p>Download the attendance records in csv format.</p>
+    </div>
+</div>
+
+  </a>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
