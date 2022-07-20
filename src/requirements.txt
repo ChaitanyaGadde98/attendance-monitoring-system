@@ -1,6 +1,6 @@
 opencv-python
-dlib
 cmake
+dlib
 face-recognition
 imutils
 scipy
