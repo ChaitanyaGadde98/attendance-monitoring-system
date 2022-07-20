@@ -2,6 +2,7 @@ FROM ubuntu:18.04
 
 # Install dependencies
 RUN apt-get update && apt-get install -y python3-pip
+RUN pip install --upgrade pip
 
 ENV APP_ROOT /opt/attendance-monitoring-system
 ENV PATH $APP_ROOT/python_env/bin:$PATH
