@@ -24,6 +24,8 @@ jobs:
 
       - name: Create and start virtual environment
         run: |
+          sudo apt install cmake
+          sudo apt-get install libgtk2.0-dev
           python -m venv venv
           source venv/bin/activate
       
